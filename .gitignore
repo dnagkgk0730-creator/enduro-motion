@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Uploads / temp videos
+videos/
+/tmp/
+*.mp4
+*.mov
+
+# Logs
+logs/
+*.log
+
+# Standards (generated, not committed)
+standards/enduro_standard.json
+
+# Preview (static build artifact)
+preview/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

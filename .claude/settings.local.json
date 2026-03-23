@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p D:/dev/enduro-motion/app/models D:/dev/enduro-motion/app/utils D:/dev/enduro-motion/app/agents D:/dev/enduro-motion/app/pipeline D:/dev/enduro-motion/app/api D:/dev/enduro-motion/standards D:/dev/enduro-motion/videos D:/dev/enduro-motion/logs)",
+      "Bash(touch D:/dev/enduro-motion/app/__init__.py D:/dev/enduro-motion/app/models/__init__.py D:/dev/enduro-motion/app/utils/__init__.py D:/dev/enduro-motion/app/agents/__init__.py D:/dev/enduro-motion/app/pipeline/__init__.py D:/dev/enduro-motion/app/api/__init__.py)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where python:*)",
+      "Bash(find D:/dev/enduro-frontend/src -name *.jsx -o -name *.js -o -name *.css)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(netstat -ano)",
+      "Bash(wmic process:*)",
+      "Bash(git config:*)",
+      "Bash(git credential-manager:*)"
+    ]
+  }
+}

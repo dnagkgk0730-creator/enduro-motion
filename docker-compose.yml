@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./standards:/app/standards:ro
+      - upload_tmp:/tmp/uploads
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - STANDARDS_PATH=standards/enduro_standard.json
+      - UPLOAD_DIR=/tmp/uploads
+
+  worker:
+    build: .
+    command: celery -A celery_worker app --concurrency=2 --loglevel=info
+    volumes:
+      - ./standards:/app/standards:ro
+      - upload_tmp:/tmp/uploads
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - STANDARDS_PATH=standards/enduro_standard.json
+      - UPLOAD_DIR=/tmp/uploads
+
+volumes:
+  upload_tmp:
